@@ -21,7 +21,7 @@ namespace BackgroundRemovalSample.App
 				.SetDefault("out.png");
 
 			parser.Setup(arg => arg.FloodFillTolerance)
-				.As('f', "flood-fill-tolerance")
+				.As('t', "flood-fill-tolerance")
 				.SetDefault(0.01);
 
 			parser.Setup(arg => arg.MaskBlurFactor)
