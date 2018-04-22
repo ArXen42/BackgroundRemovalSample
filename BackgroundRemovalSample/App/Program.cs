@@ -28,10 +28,19 @@ namespace BackgroundRemovalSample.App
 				.As('b', "blur")
 				.SetDefault(5);
 
-			parser.SetupHelp();
+			parser.SetupHelp("h", "help")
+				.Callback(text => Console.WriteLine(text));
 
-			if (parser.Parse(args).HasErrors)
+			var parseResult = parser.Parse(args);
+
+			if (parseResult.HelpCalled)
+				return;
+			
+			if (parseResult.HasErrors)
+			{
 				parser.HelpOption.ShowHelp(parser.Options);
+				return;
+			}
 
 			new Application(parser.Object).Run();
 		}
