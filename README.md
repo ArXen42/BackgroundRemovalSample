@@ -6,3 +6,4 @@ or
 
     -i image.jpg -o out.png -t 0.1 -b 5
 
+There is [habrahabr.ru post](https://habrahabr.ru/post/353890/) about this sample.
