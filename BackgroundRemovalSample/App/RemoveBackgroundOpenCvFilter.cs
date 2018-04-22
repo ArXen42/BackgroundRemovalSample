@@ -112,7 +112,7 @@ namespace BackgroundRemovalSample.App
 			using (var preparedSrc = new Mat())
 			{
 				Cv2.CvtColor(src, preparedSrc, ColorConversionCodes.BGR2GRAY);
-				preparedSrc.ConvertTo(preparedSrc, MatType.CV_32F, 1.0 / 255);
+				preparedSrc.ConvertTo(preparedSrc, MatType.CV_32FC1, 1.0 / 255);
 
 				// Calculate Sobel derivative with kernel size depending on image resolution
 				Mat Derivative(Int32 dx, Int32 dy)
@@ -123,7 +123,7 @@ namespace BackgroundRemovalSample.App
 						resolution < 2000 * 2000 ? 5 :
 						resolution < 3000 * 3000 ? 9 :
 						                           15;
-					Double kernelFactor = kernelSize == 3 ? 1 : 2; // Compensate lack of contrast on large images
+					Single kernelFactor = kernelSize == 3 ? 1 : 2; // Compensate lack of contrast on large images
 
 					using (var kernelRows = new Mat())
 					using (var kernelColumns = new Mat())
@@ -145,7 +145,7 @@ namespace BackgroundRemovalSample.App
 					var result = new Mat();
 					Cv2.Magnitude(gradX, gradY, result);
 
-					result += 0.05; //Add small constant so the flood fill will perform correctly
+					result += 0.15f; //Add small constant so the flood fill will perform correctly
 					return result;
 				}
 			}
