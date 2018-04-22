@@ -90,14 +90,14 @@ namespace BackgroundRemovalSample.App
 				if (MaskBlurFactor > 0)
 					Cv2.GaussianBlur(alphaMask, alphaMask, new Size(MaskBlurFactor, MaskBlurFactor), MaskBlurFactor);
 
-				ApplyTransparencyMask(src, dst, alphaMask);
+				AddAlphaChannel(src, dst, alphaMask);
 			}
 		}
 
 		/// <summary>
 		///     Adds transparency channel to source image and writes to output image.
 		/// </summary>
-		private static void ApplyTransparencyMask(Mat src, Mat dst, Mat alpha)
+		private static void AddAlphaChannel(Mat src, Mat dst, Mat alpha)
 		{
 			var bgr  = Cv2.Split(src);
 			var bgra = new[] {bgr[0], bgr[1], bgr[2], alpha};
