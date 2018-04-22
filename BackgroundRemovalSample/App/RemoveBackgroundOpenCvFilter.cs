@@ -107,7 +107,7 @@ namespace BackgroundRemovalSample.App
 		/// <summary>
 		///     Performs edges detection. Result will be used as base for transparency mask.
 		/// </summary>
-		private static Mat GetGradient(Mat src)
+		private Mat GetGradient(Mat src)
 		{
 			using (var preparedSrc = new Mat())
 			{
